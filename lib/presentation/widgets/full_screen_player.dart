@@ -43,9 +43,40 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
 
         return AspectRatio(
           aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
+          child: Stack(
+            children: [
+              VideoPlayer(_controller),
+
+              Positioned(
+                bottom: 50,
+                left: 20,
+                child: _VideoCaption(caption: widget.captions),
+              ),
+            ],
+          ),
         );
       },
+    );
+  }
+}
+
+class _VideoCaption extends StatelessWidget {
+  final String caption;
+  const _VideoCaption({required this.caption});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final titleStyle = Theme.of(context).textTheme.titleLarge;
+
+    return SizedBox(
+      width: size.width * 0.6,
+      child: Text(
+        caption,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: titleStyle,
+      ),
     );
   }
 }
