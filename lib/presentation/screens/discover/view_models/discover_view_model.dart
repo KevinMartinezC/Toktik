@@ -1,17 +1,17 @@
-
 import 'package:flutter/material.dart';
-import 'package:toktik/data/models/local_video_model.dart';
 import 'package:toktik/domain/models/video_post.dart';
-import 'package:toktik/shared/data/local_video_posts.dart';
+import 'package:toktik/domain/repositories/video_posts_repository.dart';
 
 class DiscoverViewModel extends ChangeNotifier {
+  final VideoPostsRepository videoPostsRepository;
+  
+  DiscoverViewModel({required this.videoPostsRepository});
+
   bool initialLoading = true;
   List<VideoPost> videos = [];
 
   Future<void> loadNextPage() async {
-    final List<VideoPost> newVideos = videoPosts
-        .map((video) => LocalVideoModel.fromJsonMap(video).toVideoPostModel())
-        .toList();
+    final List<VideoPost> newVideos = await videoPostsRepository.getTrendingVideosByPage(1);
 
     videos.addAll(newVideos);
     initialLoading = false;
