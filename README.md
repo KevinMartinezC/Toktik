@@ -2,15 +2,13 @@
 
 A Flutter application that mimics TikTok's vertical video scrolling experience, built with clean architecture principles.
 
-
 https://github.com/user-attachments/assets/7c1a4f1a-b22b-495e-a5f9-8b08030a252c
-
 
 
 ## Features
 
 - 📹 Vertical video scrolling (TikTok-style)
-- 🎨 Clean Architecture implementation
+- 🎨 Clean Architecture implementation(Basic)
 - 📱 Smooth video playback
 - 💖 Like and view count display
 - 🔄 Infinite scroll pagination
